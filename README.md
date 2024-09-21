@@ -4,29 +4,31 @@ Este é um aplicativo web simples de bloco de notas e lista de tarefas, desenvol
 
 ## Estrutura do Projeto
 
-NotePads/
-│
-├── database/
-│   └── database.sql         # Script SQL para criação das tabelas
-│
-├── static/
-│   └── style.css            # Arquivo de estilo CSS
-│
-├── templates/
-│   ├── add_tarefa.html      # Template para adicionar tarefas
-│   ├── dash.html            # Dashboard principal
-│   ├── index.html           # Página inicial
-│   ├── login.html           # Página de login
-│   ├── nota.html            # Template para adicionar/editar notas
-│   ├── register.html        # Página de registro
-│   ├── tarefa.html          # Página para exibir tarefas
-│   └── ver_nota.html        # Página para visualizar notas
-│
-├── app.py                   # Arquivo principal da aplicação Flask
-├── init_db.py               # Script para inicializar o banco de dados MySQL
-├── models.py                # Modelos e funções de acesso ao banco de dados
-├── README.md                # Este arquivo
-├── requirements.txt         # Dependências da aplicação
+- **database/**: Contém o arquivo SQL para a criação do banco de dados.
+  - `database.sql`: Script de criação das tabelas para o banco de dados MySQL.
+
+- **static/**: Pasta para arquivos estáticos (como CSS).
+  - `style.css`: Estilos personalizados para o layout do aplicativo.
+
+- **templates/**: Contém os templates HTML usados pelo Flask para renderizar as páginas.
+  - `add_tarefa.html`: Página para adicionar novas tarefas.
+  - `dash.html`: Painel principal do usuário após login.
+  - `index.html`: Página inicial do aplicativo.
+  - `login.html`: Página de login.
+  - `nota.html`: Página para criar e editar notas.
+  - `register.html`: Página de registro de novos usuários.
+  - `tarefa.html`: Página que lista todas as tarefas do usuário.
+  - `ver_nota.html`: Página que exibe as notas do usuário.
+
+- **app.py**: Arquivo principal da aplicação Flask que define as rotas e o comportamento do servidor.
+
+- **init_db.py**: Script para inicializar e configurar o banco de dados MySQL.
+
+- **models.py**: Arquivo contendo as classes de modelo que representam as entidades do banco de dados, como `User`, `Nota`, e `Tarefa`.
+
+- **README.md**: Este arquivo, com informações sobre o projeto.
+
+- **requirements.txt**: Lista de dependências do projeto, utilizadas para instalar as bibliotecas necessárias.
 
 ## Funcionalidades
 
