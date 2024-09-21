@@ -1,21 +1,17 @@
-CREATE DATABASE IF NOT EXISTS prova;
-USE prova;
+CREATE DATABASE IF NOT EXISTS BlocoNotas;
+
+USE BlocoNotas;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email TEXT NOT NULL,
     senha TEXT NOT NULL
-) ;
+);
+
 CREATE TABLE IF NOT EXISTS notas (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome TEXT NOT NULL,
+    titulo TEXT NOT NULL,
     descricao TEXT,
-    
-) ;
-
-CREATE TABLE IF NOT EXISTS tarefas (
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome TEXT NOT NULL,
-    descricao TEXT,
-    
-) ;
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES usuarios(id)
+);

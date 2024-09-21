@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bloco de Notas - Início</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <a href="{{url_for('login')}}">Login</a>
-    <a href="{{url_for('register')}}">Register</a>
+    <div class="container">
+        <h1>Bem-vindo ao Bloco de Notas</h1>
+        <p>Gerencie suas notas de forma fácil e segura.</p>
+        <a href="{{ url_for('login') }}">Login</a> | 
+        <a href="{{ url_for('register') }}">Registrar</a>
+    </div>
 </body>
 </html>

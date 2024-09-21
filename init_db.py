@@ -1,4 +1,3 @@
-# Importing MySQL connector
 import mysql.connector
 
 db_config = {
@@ -7,23 +6,19 @@ db_config = {
     'host': 'localhost',
 }
 
-
 conn = None
 
 try:
-    # Estabelece conexão sem especificar o banco de dados
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
-    # Tenta criar o banco de dados
-    cursor.execute("CREATE DATABASE IF NOT EXISTS projeto")
-    print("Banco de dados 'projeto' criado ou já existente.")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS BlocoNotas")
+    print("Banco de dados 'BlocoNotas' criado ou já existente.")
 
-    # Fecha a conexão e abre uma nova com o banco de dados 'projeto'
     cursor.close()
     conn.close()
 
-    db_config['database'] = 'projeto'
+    db_config['database'] = 'BlocoNotas'
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
@@ -36,18 +31,14 @@ finally:
         conn.close()
 
 if conn is not None:
-    # Abre conexão novamente para executar o script SQL
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
-    # Localização do SQL
     SCHEMA = "database/database.sql"
 
-    # Declara o SQL para o banco
     with open(SCHEMA, 'r') as f:
         sql_script = f.read()
 
-    # Executa cada statement do script SQL
     for statement in sql_script.split(';'):
         if statement.strip():
             try:

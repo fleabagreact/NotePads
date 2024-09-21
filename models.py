@@ -1,23 +1,22 @@
+from mysql.connector import connect
 from flask_login import UserMixin
-import mysql.connector as sql
 
-# Função para obter a conexão com o banco de dados
 def obter_conexao():
     db_config = {
         'user': 'root',
         'password': '',
         'host': 'localhost',
-        'database': 'prova'
+        'database': 'BlocoNotas'
     }
-    return sql.connect(**db_config)
+    return connect(**db_config)
 
 class User(UserMixin):
     id: str
+
     def __init__(self, email, senha):
         self.email = email
         self.senha = senha
 
-    # Busca um usuário pelo id (matrícula) no banco de dados
     @classmethod
     def get(cls, id):
         conexao = obter_conexao()
@@ -34,7 +33,6 @@ class User(UserMixin):
             user = None
         return user
     
-    # Busca um usuário pelo número de matrícula
     @classmethod
     def select_get_by_email(cls, email):
         conexao = obter_conexao()
@@ -53,6 +51,67 @@ class User(UserMixin):
         conexao = obter_conexao()
         cursor = conexao.cursor()
         cursor.execute('INSERT INTO usuarios (email, senha) VALUES (%s, %s)', (email, senha))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+class Nota:
+    def __init__(self, id, titulo, descricao, user_id):
+        self.id = id
+        self.titulo = titulo
+        self.descricao = descricao
+        self.user_id = user_id
+
+    @classmethod
+    def get_all_by_user_id(cls, user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('SELECT * FROM notas WHERE user_id=%s', (user_id,))
+        dados = cursor.fetchall()
+        cursor.close()
+        conexao.close()
+
+        notas = []
+        for nota in dados:
+            notas.append(Nota(nota[0], nota[1], nota[2], nota[3]))
+        return notas
+
+    @classmethod
+    def add(cls, titulo, descricao, user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('INSERT INTO notas (titulo, descricao, user_id) VALUES (%s, %s, %s)', (titulo, descricao, user_id))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+    @classmethod
+    def get_by_id(cls, id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('SELECT * FROM notas WHERE id=%s', (id,))
+        nota = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+
+        if nota:
+            return Nota(nota[0], nota[1], nota[2], nota[3])
+        return None
+
+    @classmethod
+    def update(cls, id, titulo, descricao):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('UPDATE notas SET titulo=%s, descricao=%s WHERE id=%s', (titulo, descricao, id))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+    @classmethod
+    def delete(cls, id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('DELETE FROM notas WHERE id=%s', (id,))
         conexao.commit()
         cursor.close()
         conexao.close()
