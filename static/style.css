@@ -8,13 +8,34 @@
 
 /* Estilo básico para o corpo */
 body {
-    background-color: #f4f4f4;
+    background-color:white;
     color: #333;
     font-size: 16px;
     line-height: 1.6;
+    
 }
 
 /* Container principal para centralizar o conteúdo */
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.conteudo{
+    margin-top: 5%;
+    width: 70%;
+    height: 600px;
+    border: 5px solid rgb(223, 24, 58);
+    align-self: center;
+    background-color: pink;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
 .container {
     width: 80%;
     max-width: 1200px;
@@ -23,11 +44,78 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 10px solid pink;
+    border-bottom: 40px solid pink;
+    
+    }
+   
+.conteiner_form{
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 10px solid pink;
+    border-bottom: 40px solid pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;}
+
+.conteiner_form button{
+    width: 600px;
+}
+.conteiner_form form input{
+    width: 600px;
+    height: 50px;
+    border: 4px solid rgb(223, 24, 58);
+    border-radius: 15px;
+}
+
+button{
+    width: 200px;
+    height: 50px;
+    color: rgb(223, 24, 58);
+    background-color: white;
+    border: 4px solid pink;
+    border-radius: 10px;
+
+}
+button a{
+    color:rgb(223, 24, 58) ;
+}
+
+.links{
+    width: 100%;
+    display: flex;
+    flex-direction: column
+    ;
+    justify-content: center;
+    align-items: center;
+}
+.links button{
+    width: 700px;
+    height: 60px;
+    margin-top: 30px;
+    background-color: rgb(223, 24, 58);
+    color: white;
+}
+.links button a{
+    color: white;
+}
+
+.links button:hover{
+    background-color: white;
+}
+.links button a:hover{
+    color: rgb(223, 24, 58);
 }
 
 /* Título principal */
 h1 {
-    color: #2c3e50;
+    color: rgb(223, 24, 58);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -54,22 +142,10 @@ textarea {
 }
 
 /* Botões */
-button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-button a{
-    color: white;
-}
+
 
 button:hover {
-    background-color: #2980b9;
+    background-color: pink;
 }
 
 /* Links */
@@ -80,7 +156,8 @@ a {
 }
 
 a:hover {
-    color: #2980b9;
+    color: white;
+
 }
 
 /* Flash messages */
@@ -110,6 +187,7 @@ ul li.info {
 }
 
 /* Lista de notas */
+
 ul.notas {
     padding: 0;
 }
@@ -117,8 +195,8 @@ ul.notas {
 ul.notas li {
     background-color: #ecf0f1;
     padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
 }
@@ -131,10 +209,32 @@ ul.notas li a {
     font-size: 1.1em;
     color: #2c3e50;
 }
-
-.links{
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    padding: 5%;
+#concluido{
+    border: none;
 }
+#concluido a{
+    color: green;
+}
+#concluido:hover{
+    background-color: green;
+}
+#concluido a:hover{
+    color: white;
+}
+.sair {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.sair button{
+    width: 400px;
+    background-color: rgb(223, 24, 58);
+    align-self: center;
+    color: white;
+    border: none;
+}
+.sair button a{
+    color: white;
+}
+

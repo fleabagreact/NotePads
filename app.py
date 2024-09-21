@@ -29,10 +29,22 @@ def register():
         hash = generate_password_hash(senha)
         User.insert_data_user(email, hash)
 
+        user = User.select_get_by_email(email)
+        login_user(user)
+
+        corpo = f"""
+        <p>Bem vindo , email enviado</p>
+
+        """
+        assunto = "Cadastro"
+        destinatario = current_user.email
+
+
+        User.enviar_email(corpo, assunto, destinatario)
         
         
         
-        return redirect(url_for("login")) 
+        return redirect(url_for("dash")) 
     return render_template('register.html')
 
 @app.route('/login', methods = ["POST", "GET"])

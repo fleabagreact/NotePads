@@ -9,23 +9,24 @@
 <body>
     <div class="container">
         <h1>Minhas Notas</h1>
-        <a href="{{ url_for('add_note') }}">Adicionar Nota</a>
+        
         <ul class="notas">
             {% for nota in notas %}
                 <li>
-                    <strong>{{ nota[1] }}</strong> - {{ nota[2] }}
+                    <strong><p>Nota: {{ nota[1] }}</p></strong> <p>Obs: {{ nota[2] }}</p>
                     <div>
-                        <a href="{{ url_for('edit_note', id=nota[0]) }}">Editar</a>
-                        <a href="{{ url_for('delete_note', id=nota[0]) }}">Deletar</a>
+                        <button><a href="{{ url_for('edit_note', id=nota[0]) }}">Editar</a></button>
+                        <button><a href="{{ url_for('delete_note', id=nota[0]) }}">Deletar</a></button>
                     </div>
                 </li>
             {% endfor %}
         </ul>
-
+        <button><a href="{{ url_for('add_note') }}">Adicionar Nota</a></button>
         
 
 
-        <a href="{{ url_for('logout') }}">Sair</a>
+       
     </div>
+    <div class="sair"><button><a  href="{{ url_for('logout') }}">Sair</a></button></div>
 </body>
 </html>

@@ -8,10 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Bem-vindo ao Bloco de Notas</h1>
-        <p>Gerencie suas notas de forma fácil e segura.</p>
-        <a href="{{ url_for('login') }}">Login</a> | 
-        <a href="{{ url_for('register') }}">Registrar</a>
+        <h1>Bem-vindo ao Bloco de Notas 🗒️</h1>
+        <div class="linha">
+            <p>Gerencie suas notas de forma fácil e segura.</p>
+        <div><button><a href="{{ url_for('login') }}">Login</a>  </button>
+            <button><a href="{{ url_for('register') }}">Registrar</a></div></button>
+        </div>
     </div>
+
+ 
 </body>
 </html>

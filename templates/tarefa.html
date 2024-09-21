@@ -8,21 +8,29 @@
 
 </head>
 <body>
+    <div class="container">
     <h1>Minhas tarefas</h1>
     <p>{{ user_id }}</p>
     {% for tarefa in tarefas %}
-    <ul>
-        <div class="linha_tarefa">
-            <p>* {{tarefa[1]}} -> {{tarefa[2]}}</p>  
-            <br><a href="{{ url_for('delete_tarefa', id=tarefa[0]) }}">Concluída</a>
-        </div>
+    <ul class="notas">
+        
+           <li> <p> {{tarefa[1]}}</p>       <p>Obs: {{tarefa[2]}}</p>  
+            <br><button id="concluido"><a href="{{ url_for('delete_tarefa', id=tarefa[0]) }}">Concluída✅</a></button></li>
+        
         <br>
         
     </ul>
     {% endfor %}
     <br>
-    <a href="{{ url_for('add_tarefa')}}">Adicionar tarefa</a>
+    <button><a href="{{ url_for('add_tarefa')}}">Adicionar tarefa</a></button>
     <br><br><br>
-    <a href="{{ url_for('logout') }}">Sair</a>
+    </div>
+    <div class="sair">
+        <button><a href="{{ url_for('logout') }}">Sair</a></button>
+    </div>
+
+
+
+    
 </body>
 </html>

@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="conteiner_form">
         <h1>{% if nota %}Editar{% else %}Adicionar{% endif %} Nota</h1>
         <form method="POST">
-            <label for="title">Título:</label>
-            <input type="text" name="titulo" id="title" value="{{ nota.titulo if nota else '' }}" required>
-            <label for="content">Conteúdo:</label>
-            <input name="descricao" id="content" required>{{ nota.descricao if nota else '' }}</input>
+            
+            <input type="text" name="titulo" id="title" placeholder="Título" value="{{ nota.titulo if nota else '' }}" required>
+            
+            <input name="descricao" id="content" placeholder="Conteudo" required>{{ nota.descricao if nota else '' }}</input>
             <button type="submit">{% if nota %}Atualizar{% else %}Adicionar{% endif %}</button>
         </form>
-        <a href="{{ url_for('dash') }}">Voltar</a>
+        <br><br>
+        <a href="{{ url_for('dash') }}">↩️</a>
     </div>
 </body>
 </html>
