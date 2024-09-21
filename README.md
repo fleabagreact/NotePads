@@ -57,7 +57,7 @@ Este é um aplicativo web simples de bloco de notas e lista de tarefas, desenvol
    - **No Windows**:
 
      ```bash
-     python -m venv eenv
+     python -m venv env
      .\env\Scripts\activate
      ```
 
