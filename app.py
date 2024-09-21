@@ -39,12 +39,9 @@ def register():
         assunto = "Cadastro"
         destinatario = current_user.email
 
-
         User.enviar_email(corpo, assunto, destinatario)
-        
-        
-        
-        return redirect(url_for("dash")) 
+
+        return redirect(url_for('dash')) 
     return render_template('register.html')
 
 @app.route('/login', methods = ["POST", "GET"])
@@ -62,7 +59,6 @@ def login():
             else:
                 return redirect(url_for('login'))
     return render_template('login.html')
-
 
 @app.route('/dash')
 def dash():
@@ -131,17 +127,11 @@ def add_tarefa():
         return redirect(url_for("tarefa"))
     return render_template('add_tarefa.html')
 
-
-
 @app.route('/delete_tarefa/<int:id>')
 @login_required
 def delete_tarefa(id):
     Tarefa.delete_tarefa(id)
     return redirect(url_for('tarefa'))
-
-
-
-
 
 @app.route('/logout')
 @login_required
