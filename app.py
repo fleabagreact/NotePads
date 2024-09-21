@@ -1,7 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request, flash
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
-from models import User, Nota
+from models import User, Nota, Tarefa
 from werkzeug.security import generate_password_hash, check_password_hash
+
+import smtplib
+import email.message
 
 login_manager = LoginManager()
 
@@ -25,7 +28,11 @@ def register():
         senha = request.form["senha"]
         hash = generate_password_hash(senha)
         User.insert_data_user(email, hash)
-        return redirect(url_for("dash")) 
+
+        
+        
+        
+        return redirect(url_for("login")) 
     return render_template('register.html')
 
 @app.route('/login', methods = ["POST", "GET"])
@@ -44,11 +51,16 @@ def login():
                 return redirect(url_for('login'))
     return render_template('login.html')
 
+
 @app.route('/dash')
-@login_required
 def dash():
+    return render_template('dash.html')
+
+@app.route('/ver_nota')
+@login_required
+def ver_nota():
     notas = Nota.get_all_by_user_id(current_user.id)
-    return render_template('dash.html', notas=notas)
+    return render_template('ver_nota.html', notas=notas)
 
 @app.route('/add', methods=['GET', 'POST'])
 @login_required
@@ -88,6 +100,36 @@ def delete_note(id):
     Nota.delete(id)
     flash('Nota excluída com sucesso!', 'success')
     return redirect(url_for('dash'))
+
+@app.route('/tarefa')
+@login_required
+def tarefa():
+    user_id =current_user.id
+    tarefas = Tarefa.get_all_by_user_id(user_id)
+    return render_template('tarefa.html', tarefas=tarefas)
+
+@app.route('/add_tarefa',methods=['GET','POST'])
+@login_required
+def add_tarefa():
+    if request.method == 'POST':
+        titulo = request.form['titulo']
+        descricao = request.form['descricao']
+        user_id = current_user.id 
+        Tarefa.add_tarefa(titulo, descricao, user_id)
+        return redirect(url_for("tarefa"))
+    return render_template('add_tarefa.html')
+
+
+
+@app.route('/delete_tarefa/<int:id>')
+@login_required
+def delete_tarefa(id):
+    Tarefa.delete_tarefa(id)
+    return redirect(url_for('tarefa'))
+
+
+
+
 
 @app.route('/logout')
 @login_required

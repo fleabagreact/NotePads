@@ -64,6 +64,9 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+button a{
+    color: white;
+}
 
 button:hover {
     background-color: #2980b9;
@@ -127,4 +130,11 @@ ul.notas li a {
 .notas strong {
     font-size: 1.1em;
     color: #2c3e50;
+}
+
+.links{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
 }

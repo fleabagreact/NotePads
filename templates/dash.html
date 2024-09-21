@@ -4,24 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Minhas Notas</h1>
-        <a href="{{ url_for('add_note') }}">Adicionar Nota</a>
-        <ul class="notas">
-            {% for nota in notas %}
-                <li>
-                    <strong>{{ nota.title }}</strong> - {{ nota.content }}
-                    <div>
-                        <a href="{{ url_for('edit_note', id=nota.id) }}">Editar</a>
-                        <a href="{{ url_for('delete_note', id=nota.id) }}">Deletar</a>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-        <a href="{{ url_for('logout') }}">Sair</a>
+    <h1>Bem vindo ao bloco de notas </h1>
+
+    
+    <div class="links">
+        <button><a href="{{url_for('ver_nota')}}">Ver seu bloco de notas</a></button>
+        <button><a href="{{url_for('tarefa')}}">Ver suas tarefas</a></button>
     </div>
 </body>
 </html>

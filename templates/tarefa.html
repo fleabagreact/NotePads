@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
+
+</head>
+<body>
+    <h1>Minhas tarefas</h1>
+    <p>{{ user_id }}</p>
+    {% for tarefa in tarefas %}
+    <ul>
+        <div class="linha_tarefa">
+            <p>* {{tarefa[1]}} -> {{tarefa[2]}}</p>  
+            <br><a href="{{ url_for('delete_tarefa', id=tarefa[0]) }}">Concluída</a>
+        </div>
+        <br>
+        
+    </ul>
+    {% endfor %}
+    <br>
+    <a href="{{ url_for('add_tarefa')}}">Adicionar tarefa</a>
+    <br><br><br>
+    <a href="{{ url_for('logout') }}">Sair</a>
+</body>
+</html>

@@ -2,6 +2,7 @@ import mysql.connector
 
 db_config = {
     'user': 'root',
+    #sem nescissade de senha, uso do xampp
     'password': '',
     'host': 'localhost',
 }
@@ -12,7 +13,7 @@ try:
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
-    cursor.execute("CREATE DATABASE IF NOT EXISTS BlocoNotas")
+    cursor.execute("CREATE DATABASE BlocoNotas")
     print("Banco de dados 'BlocoNotas' criado ou já existente.")
 
     cursor.close()
@@ -22,7 +23,7 @@ try:
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
-    print("Conexão estabelecida com sucesso ao banco de dados 'projeto'.")
+    print("Conexão estabelecida com sucesso ao banco de dados 'BlocoNotas'.")
 
 except mysql.connector.Error as erro:
     print(f"Erro ao conectar ou criar banco de dados: {erro}")

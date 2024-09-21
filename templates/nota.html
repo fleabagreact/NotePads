@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if nota %}Editar{% else %}Adicionar{% endif %} Nota</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="container">
         <h1>{% if nota %}Editar{% else %}Adicionar{% endif %} Nota</h1>
         <form method="POST">
             <label for="title">Título:</label>
-            <input type="text" name="title" id="title" value="{{ nota.title if nota else '' }}" required>
+            <input type="text" name="titulo" id="title" value="{{ nota.titulo if nota else '' }}" required>
             <label for="content">Conteúdo:</label>
-            <textarea name="content" id="content" required>{{ nota.content if nota else '' }}</textarea>
+            <input name="descricao" id="content" required>{{ nota.descricao if nota else '' }}</input>
             <button type="submit">{% if nota %}Atualizar{% else %}Adicionar{% endif %}</button>
         </form>
         <a href="{{ url_for('dash') }}">Voltar</a>

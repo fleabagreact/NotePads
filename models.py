@@ -1,6 +1,10 @@
 from mysql.connector import connect
 from flask_login import UserMixin
 
+import smtplib
+import email.message
+
+
 def obter_conexao():
     db_config = {
         'user': 'root',
@@ -55,6 +59,7 @@ class User(UserMixin):
         cursor.close()
         conexao.close()
 
+
 class Nota:
     def __init__(self, id, titulo, descricao, user_id):
         self.id = id
@@ -71,10 +76,8 @@ class Nota:
         cursor.close()
         conexao.close()
 
-        notas = []
-        for nota in dados:
-            notas.append(Nota(nota[0], nota[1], nota[2], nota[3]))
-        return notas
+        
+        return dados
 
     @classmethod
     def add(cls, titulo, descricao, user_id):
@@ -115,3 +118,43 @@ class Nota:
         conexao.commit()
         cursor.close()
         conexao.close()
+
+class Tarefa:
+    def __init__(self, id, titulo, comentario, user_id):
+        self.id = id
+        self.titulo = titulo
+        self.comentario = comentario
+        self.user_id = user_id
+
+    @classmethod
+    def get_all_by_user_id(cls, user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('SELECT * FROM listas WHERE user_id=%s', (user_id,))
+        dados = cursor.fetchall()
+        cursor.close()
+        conexao.close()
+
+        
+        return dados
+    
+
+    @classmethod
+    def add_tarefa(cls, titulo, descricao, user_id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('INSERT INTO listas (titulo, descricao, user_id)  VALUES (%s, %s, %s)', (titulo, descricao, user_id))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+    @classmethod
+    def delete_tarefa(cls, id):
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('DELETE FROM listas WHERE id=%s', (id,))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+    
