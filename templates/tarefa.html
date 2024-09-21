@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="static/style.css">
-
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-    <h1>Minhas tarefas</h1>
-    <p>{{ user_id }}</p>
-    {% for tarefa in tarefas %}
-    <ul class="notas">
-        
-           <li> <p> {{tarefa[1]}}</p>       <p>Obs: {{tarefa[2]}}</p>  
-            <br><button id="concluido"><a href="{{ url_for('delete_tarefa', id=tarefa[0]) }}">Concluída✅</a></button></li>
-        
+        <h1>Minhas Tarefas</h1>
+        <p>{{ user_id }}</p>
+        <ul class="notas">
+            {% for tarefa in tarefas %}
+            <li>
+                <p>{{ tarefa[1] }}</p>
+                <p>Obs: {{ tarefa[2] }}</p>
+                <br>
+                <button id="concluido">
+                    <a href="{{ url_for('delete_tarefa', id=tarefa[0]) }}">Concluída ✅</a>
+                </button>
+            </li>
+            <br>
+            {% endfor %}
+        </ul>
         <br>
-        
-    </ul>
-    {% endfor %}
-    <br>
-    <button><a href="{{ url_for('add_tarefa')}}">Adicionar tarefa</a></button>
-    <br><br><br>
+        <button>
+            <a href="{{ url_for('add_tarefa') }}">Adicionar Tarefa</a>
+        </button>
+        <br><br><br>
     </div>
+
     <div class="sair">
-        <button><a href="{{ url_for('logout') }}">Sair</a></button>
+        <button>
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </button>
     </div>
-
-
-
-    
 </body>
 </html>
